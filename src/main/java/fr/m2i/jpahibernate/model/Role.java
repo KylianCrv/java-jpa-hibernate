@@ -63,6 +63,6 @@ public class Role implements Serializable {
 
     @Override
     public String toString() {
-        return "Role{" + "idRole=" + id + ", identifiant=" + identifiant + ", description=" + description + '}';
+        return "Role{" + "id=" + id + ", identifiant=" + identifiant + ", description=" + description + '}';
     }
 }

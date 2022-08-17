@@ -6,40 +6,87 @@ import javax.persistence.*;
 
 public class RoleDAO {
 
-    EntityManager entityManager = SessionHelper.getEntityManager();
+    private final EntityManager entityManager;
+
+    public RoleDAO() {
+        this.entityManager = SessionHelper.getEntityManager();
+    }
 
     public Role findById(Long id) {
-        Role role = entityManager.find(Role.class, id);
-        return role;
+        Role founded = entityManager.find(Role.class, id);
+
+        if (founded == null) {
+            System.out.println("Attention le role avec l'id : " + id + " n'existe pas.");
+        }
+
+        return founded;
     }
 
     public void create(Role role) {
-        EntityTransaction trans = null;
+        //Vérifier le param role
+
+        if (role == null) {
+            System.out.println("L'objet role ne peut pas être null");
+            return;
+        }
+
+        EntityTransaction tx = null;
+
         try {
-            trans = entityManager.getTransaction();
-            trans.begin();
-            role = new Role();
+
+            tx = entityManager.getTransaction();
+            tx.begin();
+
             entityManager.persist(role);
-            trans.commit();
+
+            tx.commit();
+
         } catch (Exception e) {
-            if (trans != null) {
-                trans.rollback();
+            System.out.println("Une erreur s'est produite durant la création du rôle");
+            if (tx != null) {
+                tx.rollback();
             }
         }
     }
-//    public void update(Long id, Role role) {
-//        EntityTransaction trans = null;
-//        try {
-//            trans = entityManager.getTransaction();
-//            trans.begin();
-//            Role updateCustomer = entityManager.merge(role);
-//            updateCustomer.setDescription(description);
-//
-//            trans.commit();
-//        } catch (Exception e) {
-//            if (trans != null) {
-//                trans.rollback();
-//            }
-//        }
-//    }
+
+    //Différentes manières : lister les param modifiables
+    // public void update(Long id, Strind description,...)
+    //On utilise l'id pour récuperer la donnée
+    //roleToUpdate.setIdentifiant(identifiant)
+    //*****
+    //Autre manière : Avoir l'id + les données à modifier encapsulées dans l'entity
+    //public void update(Long id, String description)
+    //On utilise l'id pour récuperer la donnée
+    // => set les données
+    //roleToUpdate.copy(roleData) => set uniquement les données qui ne sont pas null
+    public void update(Long id, Role roleData) {
+
+        Role roleToUpdate = entityManager.find(Role.class, id);
+
+        if (roleToUpdate == null) {
+            System.out.println("Attention le role avec l'id : " + id + " n'existe pas.");
+            return;
+        }
+
+        roleToUpdate.copy(roleData);
+
+        EntityTransaction tx = null;
+
+        try {
+
+            tx = entityManager.getTransaction();
+            tx.begin();
+
+            entityManager.merge(roleToUpdate);
+
+            tx.commit();
+
+        } catch (Exception e) {
+            System.out.println("Une erreur s'est produite durant la modification du rôle");
+            if (tx != null) {
+                tx.rollback();
+            }
+        }
+
+    }
 }

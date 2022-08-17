@@ -31,8 +31,7 @@ public class Role implements Serializable {
     public Role() {
     }
 
-    public Role(Long id, String description, String identifiant) {
-        this.id = id;
+    public Role(String description, String identifiant) {
         this.description = description;
         this.identifiant = identifiant;
     }
@@ -64,5 +63,16 @@ public class Role implements Serializable {
     @Override
     public String toString() {
         return "Role{" + "id=" + id + ", identifiant=" + identifiant + ", description=" + description + '}';
+    }
+
+    public void copy(Role roleData) {
+
+        if (roleData.getIdentifiant() != null) {
+            this.setIdentifiant(roleData.getIdentifiant());
+        }
+
+        if (roleData.getDescription() != null) {
+            this.setDescription(roleData.getDescription());
+        }
     }
 }

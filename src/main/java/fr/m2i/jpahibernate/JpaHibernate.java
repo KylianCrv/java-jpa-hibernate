@@ -1,14 +1,15 @@
 package fr.m2i.jpahibernate;
 
+import fr.m2i.jpahibernate.helper.SessionHelper;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 public class JpaHibernate {
 
     public static void main(String[] args) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("site_commerce_pu");
-        EntityManager entityManager = emf.createEntityManager();
-        System.out.println("Hello World!");
+        EntityManager entityManager = SessionHelper.getEntityManager();
+
+        System.out.println("Mon traitement...");
+
+        entityManager.close();
     }
 }

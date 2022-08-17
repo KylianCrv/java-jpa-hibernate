@@ -6,15 +6,16 @@ import javax.persistence.Persistence;
 
 public class SessionHelper {
 
-    private static EntityManager entityManager = null;
+    private static EntityManager entityManager;
 
     public static EntityManager getEntityManager() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("site_commerce_pu");
+
         if (entityManager == null) {
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("site_commerce_pu");
             entityManager = emf.createEntityManager();
-            return entityManager;
-        } else {
-            return null;
         }
+
+        return entityManager;
+
     }
 }

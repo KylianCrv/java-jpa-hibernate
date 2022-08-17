@@ -92,8 +92,7 @@ public class RoleDAO {
     }
 
     public List<Role> findAll() {
-        Query query = entityManager.createQuery("SELECT p FROM Role p");
-        List<Role> results = query.getResultList();
-        return results;
+        Query findAllQuerry = entityManager.createQuery("SELECT r FROM Role r");
+        return findAllQuerry.getResultList();
     }
 }

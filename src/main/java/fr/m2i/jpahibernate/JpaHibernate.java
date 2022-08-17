@@ -11,23 +11,25 @@ public class JpaHibernate {
         EntityManager entityManager = SessionHelper.getEntityManager();
         RoleDAO roleDao = new RoleDAO();
 
-        //Create
-        Role roleAdmin = new Role("Le rôle admin", "ADMIN");
-        roleDao.create(roleAdmin);
-
-        //find
-        Role founded = roleDao.findById(1L);
-        System.out.println("Role created  : " + founded);
-
-        //update
-        Role roleData = new Role();
-        roleData.setDescription("Le role admin implique de grandes résponsabilités");
-
-        roleDao.update(1L, roleData);
-
-        //find
-        Role updated = roleDao.findById(1L);
-        System.out.println("Role updated : " + updated);
+//        //Create
+//        Role roleAdmin = new Role("Le rôle admin", "ADMIN");
+//        roleDao.create(roleAdmin);
+//
+//        //find
+//        Role founded = roleDao.findById(1L);
+//        System.out.println("Role created  : " + founded);
+//
+//        //update
+//        Role roleData = new Role();
+//        roleData.setDescription("Le role admin implique de grandes résponsabilités");
+//
+//        roleDao.update(1L, roleData);
+//
+//        //find
+//        Role updated = roleDao.findById(1L);
+//        System.out.println("Role updated : " + updated);
+        //liste
+        roleDao.findAll();
 
         entityManager.close();
     }

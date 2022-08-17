@@ -2,6 +2,7 @@ package fr.m2i.jpahibernate.dao;
 
 import fr.m2i.jpahibernate.helper.SessionHelper;
 import fr.m2i.jpahibernate.model.Role;
+import java.util.List;
 import javax.persistence.*;
 
 public class RoleDAO {
@@ -88,5 +89,11 @@ public class RoleDAO {
             }
         }
 
+    }
+
+    public List<Role> findAll() {
+        Query query = entityManager.createQuery("SELECT p FROM Role p");
+        List<Role> results = query.getResultList();
+        return results;
     }
 }

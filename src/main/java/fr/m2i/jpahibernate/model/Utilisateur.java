@@ -100,7 +100,7 @@ public class Utilisateur implements Serializable {
         this.id = id;
     }
 
-    public boolean isActif() {
+    public Boolean isActif() {
         return actif;
     }
 
@@ -108,7 +108,7 @@ public class Utilisateur implements Serializable {
         this.actif = actif;
     }
 
-    public boolean isMarquerEffacer() {
+    public Boolean isMarquerEffacer() {
         return marquerEffacer;
     }
 
@@ -202,5 +202,40 @@ public class Utilisateur implements Serializable {
                 + ", dateCreation=" + dateCreation
                 + ", dateModification=" + dateModification
                 + ", dateNaissance=" + dateNaissance + '}';
+    }
+
+    public void copy(Utilisateur utilisateurData) {
+
+        if (utilisateurData.getCivilite() != null) {
+            this.setCivilite(utilisateurData.getCivilite());
+        }
+        if (utilisateurData.getNom() != null) {
+            this.setNom(utilisateurData.getNom());
+        }
+        if (utilisateurData.getPrenom() != null) {
+            this.setPrenom(utilisateurData.getPrenom());
+        }
+        if (utilisateurData.getIdentifiant() != null) {
+            this.setIdentifiant(utilisateurData.getIdentifiant());
+        }
+        if (utilisateurData.getMotPasse() != null) {
+            this.setMotPasse(utilisateurData.getMotPasse());
+        }
+        if (utilisateurData.isActif() != null) {
+            this.setActif(utilisateurData.isActif());
+        }
+        if (utilisateurData.isMarquerEffacer() != null) {
+            this.setMarquerEffacer(utilisateurData.isMarquerEffacer());
+        }
+        if (utilisateurData.getDateCreation() != null) {
+            this.setDateCreation(utilisateurData.getDateCreation());
+        }
+        if (utilisateurData.getDateModification() != null) {
+            this.setDateModification(utilisateurData.getDateModification());
+        }
+        if (utilisateurData.getDateNaissance() != null) {
+            this.setDateNaissance(utilisateurData.getDateNaissance());
+        }
+
     }
 }

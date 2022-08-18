@@ -49,7 +49,9 @@ public class JpaHibernate {
 
         //Create
 //        Utilisateur newUser = new Utilisateur(true, "Monsieur", new Date(), new Date(), dateNaissance, "Sheeeesh", true, "zozor", "Carvalho", "Kylian", roleAdmin);
+        Utilisateur newUser2 = new Utilisateur(true, "Madame", new Date(), new Date(), dateNaissance, "x", false, "password", "x_x", "x", roleUser);
 //        utilisateurDAO.create(newUser);
+        utilisateurDAO.create(newUser2);
 //Find
         Utilisateur founded = utilisateurDAO.findById(1L);
         System.out.println("User created  : " + founded);
@@ -65,7 +67,6 @@ public class JpaHibernate {
         userData.setMotPasse("toto");
 
         utilisateurDAO.update(1L, userData);
-
         entityManager.close();
     }
 }

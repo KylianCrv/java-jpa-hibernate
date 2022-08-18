@@ -14,11 +14,9 @@ public class Utilisateur implements Serializable {
             name = "id_utilisateur")
     private Long id;
 
-    @Column(
-            name = "actif",
-            columnDefinition = "TINYINT(1)"
-    )
-    private boolean actif;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_role", nullable = false)
+    private Role role;
 
     @Column(
             name = "civilite",
@@ -50,9 +48,15 @@ public class Utilisateur implements Serializable {
 
     @Column(
             name = "marquer_effacer",
-            columnDefinition = "TINYINT(1)"
+            columnDefinition = "TINYINT(1) DEFAULT 0"
     )
-    private boolean marquerEffacer;
+    private Boolean marquerEffacer;
+
+    @Column(
+            name = "actif",
+            columnDefinition = "TINYINT(1) DEFAULT 1"
+    )
+    private Boolean actif;
 
     @Column(
             name = "mot_passe",
@@ -69,15 +73,11 @@ public class Utilisateur implements Serializable {
             length = 100)
     private String prenom;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_role")
-    private Role role;
-
     //Constructeurs
     public Utilisateur() {
     }
 
-    public Utilisateur(boolean actif, String civilite, Date dateCreation, Date dateModification, Date dateNaissance, String identifiant, boolean marquerEffacer, String motPasse, String nom, String prenom, Role role) {
+    public Utilisateur(Boolean actif, String civilite, Date dateCreation, Date dateModification, Date dateNaissance, String identifiant, Boolean marquerEffacer, String motPasse, String nom, String prenom, Role role) {
         this.actif = actif;
         this.civilite = civilite;
         this.dateCreation = dateCreation;
@@ -104,7 +104,7 @@ public class Utilisateur implements Serializable {
         return actif;
     }
 
-    public void setActif(boolean actif) {
+    public void setActif(Boolean actif) {
         this.actif = actif;
     }
 
@@ -112,7 +112,7 @@ public class Utilisateur implements Serializable {
         return marquerEffacer;
     }
 
-    public void setMarquerEffacer(boolean marquerEffacer) {
+    public void setMarquerEffacer(Boolean marquerEffacer) {
         this.marquerEffacer = marquerEffacer;
     }
 
@@ -186,5 +186,21 @@ public class Utilisateur implements Serializable {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "Utilisateur{" + "idUtilisateur=" + id
+                + ", role=" + role
+                + ", civilite=" + civilite
+                + ", nom=" + nom
+                + ", prenom=" + prenom
+                + ", identifiant=" + identifiant
+                + ", motPasse=" + motPasse
+                + ", actif=" + actif
+                + ", marquerEffacer=" + marquerEffacer
+                + ", dateCreation=" + dateCreation
+                + ", dateModification=" + dateModification
+                + ", dateNaissance=" + dateNaissance + '}';
     }
 }

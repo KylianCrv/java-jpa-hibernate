@@ -16,9 +16,9 @@ public class Utilisateur implements Serializable {
 
     @Column(
             name = "actif",
-            columnDefinition = "TINYINT",
-            length = 1)
-    private int actif;
+            columnDefinition = "TINYINT(1)"
+    )
+    private boolean actif;
 
     @Column(
             name = "civilite",
@@ -28,19 +28,19 @@ public class Utilisateur implements Serializable {
     @Column(
             name = "date_creation",
             columnDefinition = "TIMESTAMP")
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date dateCreation;
 
     @Column(
             name = "date_modification",
             columnDefinition = "TIMESTAMP")
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date dateModification;
 
     @Column(
             name = "date_naissance",
             columnDefinition = "TIMESTAMP")
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date dateNaissance;
 
     @Column(
@@ -50,9 +50,9 @@ public class Utilisateur implements Serializable {
 
     @Column(
             name = "marquer_effacer",
-            columnDefinition = "TINYINT",
-            length = 1)
-    private int marquerEffacer;
+            columnDefinition = "TINYINT(1)"
+    )
+    private boolean marquerEffacer;
 
     @Column(
             name = "mot_passe",
@@ -77,7 +77,7 @@ public class Utilisateur implements Serializable {
     public Utilisateur() {
     }
 
-    public Utilisateur(int actif, String civilite, Date dateCreation, Date dateModification, Date dateNaissance, String identifiant, int marquerEffacer, String motPasse, String nom, String prenom, Role role) {
+    public Utilisateur(boolean actif, String civilite, Date dateCreation, Date dateModification, Date dateNaissance, String identifiant, boolean marquerEffacer, String motPasse, String nom, String prenom, Role role) {
         this.actif = actif;
         this.civilite = civilite;
         this.dateCreation = dateCreation;
@@ -100,12 +100,20 @@ public class Utilisateur implements Serializable {
         this.id = id;
     }
 
-    public int getActif() {
+    public boolean isActif() {
         return actif;
     }
 
-    public void setActif(int actif) {
+    public void setActif(boolean actif) {
         this.actif = actif;
+    }
+
+    public boolean isMarquerEffacer() {
+        return marquerEffacer;
+    }
+
+    public void setMarquerEffacer(boolean marquerEffacer) {
+        this.marquerEffacer = marquerEffacer;
     }
 
     public String getCivilite() {
@@ -146,14 +154,6 @@ public class Utilisateur implements Serializable {
 
     public void setIdentifiant(String identifiant) {
         this.identifiant = identifiant;
-    }
-
-    public int getMarquerEffacer() {
-        return marquerEffacer;
-    }
-
-    public void setMarquerEffacer(int marquerEffacer) {
-        this.marquerEffacer = marquerEffacer;
     }
 
     public String getMotPasse() {

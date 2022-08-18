@@ -13,9 +13,8 @@ public class JpaHibernate {
         RoleDAO roleDao = new RoleDAO();
 
         //Create
-        Role roleUser = new Role("Le rôle user", "USER");
-        roleDao.create(roleUser);
-
+//        Role roleUser = new Role("Le rôle user", "USER");
+//        roleDao.create(roleUser);
 //        //find
 //        Role founded = roleDao.findById(1L);
 //        System.out.println("Role created  : " + founded);

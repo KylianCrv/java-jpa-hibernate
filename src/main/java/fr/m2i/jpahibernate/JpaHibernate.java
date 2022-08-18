@@ -1,8 +1,10 @@
 package fr.m2i.jpahibernate;
 
+import fr.m2i.jpahibernate.dao.AdresseDAO;
 import fr.m2i.jpahibernate.dao.RoleDAO;
 import fr.m2i.jpahibernate.dao.UtilisateurDAO;
 import fr.m2i.jpahibernate.helper.SessionHelper;
+import fr.m2i.jpahibernate.model.Adresse;
 import fr.m2i.jpahibernate.model.Role;
 import fr.m2i.jpahibernate.model.Utilisateur;
 import java.text.ParseException;
@@ -41,32 +43,64 @@ public class JpaHibernate {
 //        }
         //*****************USER**************
         UtilisateurDAO utilisateurDAO = new UtilisateurDAO();
+//
+//        Role roleAdmin = roleDao.findById(1L);
+//        Role roleUser = roleDao.findById(2L);
+//
+//        Date dateNaissance = new SimpleDateFormat("dd/MM/yyyy").parse("09/10/1996");
+//
+//        //Create
+////        Utilisateur newUser = new Utilisateur(true, "Monsieur", new Date(), new Date(), dateNaissance, "Sheeeesh", true, "zozor", "Carvalho", "Kylian", roleAdmin);
+//        Utilisateur newUser2 = new Utilisateur(true, "Madame", new Date(), new Date(), dateNaissance, "x", false, "password", "x_x", "x", roleUser);
+////        utilisateurDAO.create(newUser);
+//        utilisateurDAO.create(newUser2);
+////Find
+//        Utilisateur founded = utilisateurDAO.findById(1L);
+//        System.out.println("User created  : " + founded);
+//
+//        //FindAll
+//        List<Utilisateur> utilisateurs = utilisateurDAO.findAll();
+//        for (Utilisateur u : utilisateurs) {
+//            System.out.println(u);
+//        }
+//
+//        //update
+//        Utilisateur userData = new Utilisateur();
+//        userData.setMotPasse("toto");
+//
+//        utilisateurDAO.update(1L, userData);
+//*********ADRESSE**********
+        AdresseDAO adresseDao = new AdresseDAO();
 
-        Role roleAdmin = roleDao.findById(1L);
-        Role roleUser = roleDao.findById(2L);
+        Utilisateur user1 = utilisateurDAO.findById(1L);
+        Utilisateur user2 = utilisateurDAO.findById(2L);
 
-        Date dateNaissance = new SimpleDateFormat("dd/MM/yyyy").parse("09/10/1996");
+//Create
+//        Adresse addr1 = new Adresse(user1, "36000", "France", true, "11, Rue Jean Bouin", "Le Poinçonnet");
+//        Adresse addr2 = new Adresse(user2, "75000", "France", true, "18, Rue Paul Verlaine", "Paris");
+//        Adresse addr3 = new Adresse(user1, "75000", "France", true, "75, Allée Paul Rue", "Paris");
+//        adresseDao.create(addr1);
+//        adresseDao.create(addr2);
+//        adresseDao.create(addr3);
+        //find
+        Adresse founded = adresseDao.findById(2L);
+        System.out.println("Adresse created  : " + founded);
 
-        //Create
-//        Utilisateur newUser = new Utilisateur(true, "Monsieur", new Date(), new Date(), dateNaissance, "Sheeeesh", true, "zozor", "Carvalho", "Kylian", roleAdmin);
-        Utilisateur newUser2 = new Utilisateur(true, "Madame", new Date(), new Date(), dateNaissance, "x", false, "password", "x_x", "x", roleUser);
-//        utilisateurDAO.create(newUser);
-        utilisateurDAO.create(newUser2);
-//Find
-        Utilisateur founded = utilisateurDAO.findById(1L);
-        System.out.println("User created  : " + founded);
-
-        //FindAll
-        List<Utilisateur> utilisateurs = utilisateurDAO.findAll();
-        for (Utilisateur u : utilisateurs) {
-            System.out.println(u);
+        //find all
+        List<Adresse> adresses = adresseDao.findAll();
+        for (Adresse a : adresses) {
+            System.out.println(a);
         }
 
         //update
-        Utilisateur userData = new Utilisateur();
-        userData.setMotPasse("toto");
-
-        utilisateurDAO.update(1L, userData);
+//        Adresse adresseData = new Adresse();
+//        adresseData.setVille("Marseille");
+//        adresseDao.update(3L, adresseData);
+        //findByUtiliisateur
+        List<Adresse> adressesById = adresseDao.findByUtilisateur(user1);
+        for (Adresse a : adressesById) {
+            System.out.println(a);
+        }
         entityManager.close();
     }
 }

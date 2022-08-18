@@ -2,6 +2,7 @@ package fr.m2i.jpahibernate.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 
 @Entity
@@ -73,6 +74,9 @@ public class Utilisateur implements Serializable {
             length = 100)
     private String prenom;
 
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.REMOVE, CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
+    private List<Adresse> adresses;
+
     //Constructeurs
     public Utilisateur() {
     }
@@ -92,6 +96,14 @@ public class Utilisateur implements Serializable {
     }
 
     //Getters & Setters
+    public List<Adresse> getAdresses() {
+        return adresses;
+    }
+
+    public void setAdresses(List<Adresse> adresses) {
+        this.adresses = adresses;
+    }
+
     public Long getId() {
         return id;
     }

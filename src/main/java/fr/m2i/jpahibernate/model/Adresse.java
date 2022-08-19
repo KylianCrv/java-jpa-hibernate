@@ -110,6 +110,10 @@ public class Adresse {
         this.ville = ville;
     }
 
+    public String getFullAdresse() {
+        return String.format("%s, %s, %s, %s", rue, codePostal, ville, pays);
+    }
+
     @Override
     public String toString() {
         return "Adresse{" + "idAdresse=" + id

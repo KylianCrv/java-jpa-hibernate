@@ -88,6 +88,11 @@ public class AdresseDAO {
     }
 
     public List<Adresse> findByUtilisateur(Utilisateur user) {
+
+        if (user == null || user.getId() != null || user.getId() < 1L) {
+            System.out.println("L'utilisateur n'est pas valide");
+            return null;
+        }
         Query findByUserQuerry = entityManager.createQuery("SELECT a FROM Adresse a WHERE a.user =?1");
         findByUserQuerry.setParameter(1, user);
         return findByUserQuerry.getResultList();
